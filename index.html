@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48</h1>
+    <h1>Guess the JKT48 Member</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -105,7 +105,7 @@
                 members = data;
                 filteredMembers = members;
                 askQuestion();
-            });
+        });
     }
 
     function askQuestion() {
@@ -137,12 +137,18 @@
         filteredMembers = filteredMembers.filter(member => member[question.key] === value);
 
         if (question.key === 'trainee' && value === true) {
-            askGenerationQuestion();
+            askGenerationQuestion(); // 12 or 13?
             return;
+        } else {
+            if (question.key === 'trainee' && value === false) {
+                askGenAll();
+                return;
+            }
         }
 
         if (question.key === 'graduated' && value === true) {
-            askInitialLetter();
+            // askInitialLetter();
+            askGenGrad();
             return;
         }
 
@@ -150,7 +156,53 @@
         askQuestion();
         showPossibleMembers();
     }
+    function askGenAll() {
+        const randomNumber = Math.floor(Math.random() * 13) + 1; // Random value between 1 and 13
+        document.getElementById('question').innerText = 'Is the member from Generation ' + randomNumber;
+        currentQuestionIndex++;
 
+        // Wait for "yes" or "no" answer before filtering generation
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterGenerationAll(${randomNumber})">Yes</button>
+            <button class="answer" onclick="filterGenerationAll()">No</button>
+        `;
+        showPossibleMembers()
+    }
+    function askGenGrad() {
+        const randomNumber = Math.floor(Math.random() * 13) + 1; // Random value between 1 and 13
+        document.getElementById('question').innerText = 'Is the member from Generation ' + randomNumber;
+        currentQuestionIndex++;
+
+        // Wait for "yes" or "no" answer before filtering generation
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterGenerationGrad(${randomNumber})">Yes</button>
+            <button class="answer" onclick="filterGenerationGrad()">No</button>
+        `;
+        showPossibleMembers()
+    }
+    function filterGenerationGrad(generation) {
+        if (generation) {
+            currentGeneration = generation;
+            filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration && member.graduated === true);
+            askInitialLetter();
+            showPossibleMembers();
+        } else {
+            askGenGrad();
+        }
+        showPossibleMembers();
+    }
+    function filterGenerationAll(generation) {
+        if (generation) {
+            currentGeneration = generation;
+            filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration && member.graduated === false);
+            askInitialLetter();
+            showPossibleMembers();
+        } else {
+            askGenAll();
+        }
+        showPossibleMembers();
+    }
+    
     function askGenerationQuestion() {
         document.getElementById('question').innerText = 'Is the member from Generation 12 or 13?';
         currentQuestionIndex++;
@@ -165,18 +217,30 @@
     function filterGeneration(generation) {
         currentGeneration = generation;
         filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration);
-        askInitialLetter();
         showPossibleMembers();
+        askInitialLetter();
     }
-
+    
     function askInitialLetter() {
-        const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
-        document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
+    const firstLetters = filteredMembers.map(member => member.name.charAt(0).toUpperCase());
+    const uniqueFirstLetters = [...new Set(firstLetters)];
+    const randomLetter = uniqueFirstLetters[Math.floor(Math.random() * uniqueFirstLetters.length)];
+
+    if (typeof randomLetter === "undefined") {
+        document.getElementById('question').innerText = `That member doesn't found.`;
         document.getElementById('answers').innerHTML = `
-            <button class="answer" onclick="filterByLetter('${randomLetter}')">Yes</button>
+            <button class="answer" onclick="filterByLetter('')">Ok</button>
+            <button class="answer" onclick="filterByLetter('')">Ok</button>
+        `;
+    } else {
+        document.getElementById('question').innerText = `Does the member's name start with: ${randomLetter}?`;
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterByLetter('${randomLetter}')">Ya</button>
             <button class="answer" onclick="filterByLetter('')">No</button>
         `;
     }
+    }
+
 
     function filterByLetter(letter) {
         if (letter) {
@@ -191,12 +255,7 @@
                 showResult(filteredMembers[0]);
             }
         } else {
-            const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
-            document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
-            document.getElementById('answers').innerHTML = `
-                <button class="answer" onclick="filterByLetter('${randomLetter}')">Yes</button>
-                <button class="answer" onclick="filterByLetter('')">No</button>
-            `;
+            askInitialLetter();
         }
         showPossibleMembers();
     }
@@ -253,9 +312,10 @@
 
     function showPossibleMembers() {
         const possibleMembersDiv = document.getElementById('possible-members');
-        possibleMembersDiv.innerHTML = '';
+        
+        possibleMembersDiv.innerHTML = 'Kemungkinan ada ' + filteredMembers.length;
 
-        filteredMembers.forEach(member => {
+        /*filteredMembers.forEach(member => {
             const memberDiv = document.createElement('div');
             const img = document.createElement('img');
             img.src = "https://jkt48-member.vercel.app" + member.picture;
@@ -264,7 +324,7 @@
             memberDiv.appendChild(img);
             memberDiv.appendChild(name);
             possibleMembersDiv.appendChild(memberDiv);
-        });
+        });*/
     }
 
     loadData();
