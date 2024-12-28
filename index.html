@@ -96,6 +96,7 @@
     let members = [];
     let currentQuestionIndex = 0;
     let filteredMembers = [];
+    let currentGeneration = null;
 
     function loadData() {
         fetch('https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/members.json')
@@ -118,10 +119,6 @@
             { question: 'Is the member a trainee?', key: 'trainee' },
         ];
 
-        // Loop until user answers Yes to generation
-        const randomGeneration = Math.floor(Math.random() * 13) + 1;
-        questions.push({ question: `Is the member from Generation ${randomGeneration}?`, key: 'generation', value: randomGeneration });
-
         if (currentQuestionIndex < questions.length) {
             const question = questions[currentQuestionIndex];
             document.getElementById('question').innerText = question.question;
@@ -133,26 +130,54 @@
     function answer(response) {
         const question = [
             { key: 'graduated' },
-            { key: 'trainee' },
-            { key: 'generation' }
+            { key: 'trainee' }
         ][currentQuestionIndex];
 
-        if (question.key === 'generation' && response === 'no') {
-            // If answer is "No" for generation, repeat the generation question
-            askQuestion();
+        const value = response === 'yes' ? true : false;
+        filteredMembers = filteredMembers.filter(member => member[question.key] === value);
+
+        if (question.key === 'trainee' && value === true) {
+            askGenerationQuestion();
             return;
         }
 
-        const value = response === 'yes' ? true : false;
-        filteredMembers = filteredMembers.filter(member => {
-            if (question.key === 'generation') {
-                return member[question.key] === question.value;
-            }
-            return member[question.key] === value;
-        });
-
         currentQuestionIndex++;
         askQuestion();
+        showPossibleMembers();
+    }
+
+    function askGenerationQuestion() {
+        document.getElementById('question').innerText = 'Is the member from Generation 12 or 13?';
+        currentQuestionIndex++;
+
+        // Wait for "yes" or "no" answer before filtering generation
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterGeneration(12)">12</button>
+            <button class="answer" onclick="filterGeneration(13)">13</button>
+        `;
+    }
+
+    function filterGeneration(generation) {
+        currentGeneration = generation;
+        filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration);
+
+        askInitialLetter();
+    }
+
+    function askInitialLetter() {
+        const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
+        document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
+
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterByLetter('${randomLetter}')">Yes</button>
+            <button class="answer" onclick="filterByLetter('')">No</button>
+        `;
+    }
+
+    function filterByLetter(letter) {
+        if (letter) {
+            filteredMembers = filteredMembers.filter(member => member.name.charAt(0).toUpperCase() === letter);
+        }
         showPossibleMembers();
     }
 
@@ -170,7 +195,7 @@
         filteredMembers.forEach(member => {
             const memberDiv = document.createElement('div');
             const img = document.createElement('img');
-            img.src = "https://jkt48-member.vercel.app" + member.picture; // Corrected image URL
+            img.src = "https://jkt48-member.vercel.app/assets/member/" + member.picture; // Corrected image URL
             const name = document.createElement('p');
             name.innerText = member.name;
             memberDiv.appendChild(img);
