@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48 Member</h1>
+    <h1>Guess the JKT48</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -211,14 +211,21 @@
     }
 
     function filterBySecondLetter(secondLetter) {
-        if (secondLetter) {
-            filteredMembers = filteredMembers.filter(member => 
-                member.name.charAt(1).toUpperCase() === secondLetter
-            );
-        }
+    if (secondLetter) {
+        filteredMembers = filteredMembers.filter(member => 
+            member.name.charAt(1).toUpperCase() === secondLetter
+        );
         showResult(filteredMembers[0]);
         showPossibleMembers();
+    } else {
+        if (filteredMembers.length > 1) {
+            askSecondLetter(filteredMembers[1].name);  // Ask second letter from the second member in the list
+        } else {
+            showResult(filteredMembers[0]);  // Show result if only one member is left
+        }
     }
+    }
+
 
     function showResult(member) {
         document.getElementById('result').style.display = 'block';
