@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48 Member</h1>
+    <h1>Guess the JKT48</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -147,7 +147,6 @@
             showPossibleMembers();
             return;
         }
-        
         currentQuestionIndex++;
         askQuestion();
         showPossibleMembers();
@@ -167,14 +166,13 @@
     function filterGeneration(generation) {
         currentGeneration = generation;
         filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration);
-
         askInitialLetter();
+        showPossibleMembers();
     }
 
     function askInitialLetter() {
         const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
         document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
-
         document.getElementById('answers').innerHTML = `
             <button class="answer" onclick="filterByLetter('${randomLetter}')">Yes</button>
             <button class="answer" onclick="filterByLetter('')">No</button>
@@ -188,7 +186,6 @@
         } else {
         const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
         document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
-
         document.getElementById('answers').innerHTML = `
             <button class="answer" onclick="filterByLetter('${randomLetter}')">Yes</button>
             <button class="answer" onclick="filterByLetter('')">No</button>
