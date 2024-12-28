@@ -3,101 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akinator - JKT48 Member Guessing Game</title>
+    <title>Akinator JKT48</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
+
+        #game {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         #question {
             font-size: 20px;
+            margin-bottom: 20px;
         }
-        #picture {
-            margin-top: 20px;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
-        button {
-            font-size: 16px;
+
+        .answer {
             padding: 10px 20px;
-            margin: 5px;
+            font-size: 18px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
             cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .answer:hover {
+            background-color: #45a049;
+        }
+
+        #result img {
+            max-width: 100px;
+            border-radius: 10px;
+        }
+
+        #result-name {
+            font-size: 24px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+
+<div id="game">
     <h1>Guess the JKT48 Member</h1>
     <div id="question"></div>
-    <div id="picture"></div>
-    <div class="buttons">
-        <button onclick="answer(true)">Yes</button>
-        <button onclick="answer(false)">No</button>
+    <div id="answers">
+        <button class="answer" onclick="answer('yes')">Yes</button>
+        <button class="answer" onclick="answer('no')">No</button>
     </div>
+    <div id="result" style="display:none">
+        <h2>We think the member is:</h2>
+        <img id="result-img" src="" alt="Member Image">
+        <p id="result-name"></p>
+    </div>
+</div>
 
-    <script>
-        let members = [];
-        let currentQuestionIndex = 0;
-        let possibleMembers = [];
-        let generationAsked = false; // Track if the generation question has been asked
+<script>
+    let members = [];
+    let currentQuestionIndex = 0;
+    let filteredMembers = [];
 
-        // Fetch the members' data from the URL
+    function loadData() {
         fetch('https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/members.json')
             .then(response => response.json())
             .then(data => {
                 members = data;
-                possibleMembers = members;
+                filteredMembers = members;
                 askQuestion();
-            })
-            .catch(error => {
-                console.error('Error fetching member data:', error);
             });
+    }
 
-        function askQuestion() {
-            let question = "";
-
-            if (currentQuestionIndex === 0) {
-                question = "Has the member graduated?";
-            } else if (currentQuestionIndex === 1) {
-                question = "Is the member a trainee?";
-            } else if (currentQuestionIndex === 2 && !generationAsked) {
-                question = "Which generation is the member from? (1-13)";
-            }
-
-            document.getElementById('question').innerText = question;
+    function askQuestion() {
+        if (filteredMembers.length === 1) {
+            showResult(filteredMembers[0]);
+            return;
         }
 
-        function answer(isYes) {
-            if (currentQuestionIndex === 0) {
-                possibleMembers = possibleMembers.filter(member => member.graduated === isYes);
-            } else if (currentQuestionIndex === 1) {
-                possibleMembers = possibleMembers.filter(member => member.trainee === isYes);
-            } else if (currentQuestionIndex === 2 && !generationAsked) {
-                const generation = prompt("Please enter the generation number (1-13):");
-                if (generation >= 1 && generation <= 13) {
-                    possibleMembers = possibleMembers.filter(member => member.generation === parseInt(generation));
-                    generationAsked = true; // Mark that the generation question was asked
-                } else {
-                    alert("Please enter a valid generation number (1-13).");
-                    return;
-                }
-            }
+        const questions = [
+            { question: 'Is the member graduated?', key: 'graduated' },
+            { question: 'Is the member a trainee?', key: 'trainee' },
+        ];
 
-            currentQuestionIndex++;
+        // Add random generation question
+        const randomGeneration = Math.floor(Math.random() * 13) + 1;
+        questions.push({ question: `Is the member from Generation ${randomGeneration}?`, key: 'generation', value: randomGeneration });
 
-            if (possibleMembers.length === 1) {
-                const member = possibleMembers[0];
-                document.getElementById('question').innerText = `I guessed! It's ${member.name}.`;
-                document.getElementById('picture').innerHTML = `<img src="${member.picture}" alt="${member.name}" width="200">`;
-                document.querySelector('.buttons').style.display = 'none';
-            } else if (possibleMembers.length > 1) {
-                askQuestion();
-            } else {
-                document.getElementById('question').innerText = "Sorry, I couldn't guess the member.";
-                document.querySelector('.buttons').style.display = 'none';
-            }
+        if (currentQuestionIndex < questions.length) {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question').innerText = question.question;
+        } else {
+            showResult(filteredMembers[0]);
         }
-    </script>
+    }
+
+    function answer(response) {
+        const question = [
+            { key: 'graduated' },
+            { key: 'trainee' },
+            { key: 'generation' }
+        ][currentQuestionIndex];
+
+        const value = response === 'yes' ? true : false;
+        filteredMembers = filteredMembers.filter(member => {
+            if (question.key === 'generation') {
+                return member[question.key] === question.value;
+            }
+            return member[question.key] === value;
+        });
+
+        currentQuestionIndex++;
+        askQuestion();
+    }
+
+    function showResult(member) {
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('result-img').src = member.picture;
+        document.getElementById('result-name').innerText = member.name;
+        document.getElementById('answers').style.display = 'none';
+    }
+
+    loadData();
+</script>
+
 </body>
 </html>
