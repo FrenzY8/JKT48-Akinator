@@ -3,390 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akinator JKT48</title>
+    <title>Akinator - JKT48 Member Guessing Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-        .card-header {
-            background: #f7f7f7;
-            padding: 20px;
             text-align: center;
+            margin-top: 20px;
         }
-        .card-content {
-            padding: 20px;
+        #question {
+            font-size: 20px;
         }
-        h1 {
-            margin: 0;
-            font-size: 24px;
+        #picture {
+            margin-top: 20px;
         }
-        .progress {
-            background: #e0e0e0;
-            height: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+        .buttons {
+            margin-top: 20px;
         }
-        .progress-bar {
-            background: #4caf50;
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.3s ease;
-        }
-        .button {
-            background: #2196f3;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+        button {
             font-size: 16px;
-            transition: background 0.3s ease;
-        }
-        .button:hover {
-            background: #1976d2;
-        }
-        .button-green {
-            background: #4caf50;
-        }
-        .button-green:hover {
-            background: #45a049;
-        }
-        .button-red {
-            background: #f44336;
-        }
-        .button-red:hover {
-            background: #d32f2f;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .space-y-6 > * + * {
-            margin-top: 1.5rem;
-        }
-        .flex {
-            display: flex;
-        }
-        .justify-center {
-            justify-content: center;
-        }
-        .gap-4 > * + * {
-            margin-left: 1rem;
-        }
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: .5;
-            }
-        }
-        .member-image {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            display: block;
-        }
-        .history-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem;
-            background: #f7f7f7;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-        }
-        .text-green {
-            color: #4caf50;
-        }
-        .text-red {
-            color: #f44336;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <div class="card">
-            <div class="card-header">
-                <h1>Akinator JKT48</h1>
-                <p id="memberCount"></p>
-            </div>
-            <div class="card-content">
-                <div class="progress">
-                    <div id="progressBar" class="progress-bar"></div>
-                </div>
-                <div id="gameContent" class="space-y-6"></div>
-            </div>
-        </div>
-        <div id="history" class="card" style="display: none;">
-            <div class="card-header">
-                <h2>Riwayat Pertanyaan</h2>
-            </div>
-            <div class="card-content" id="historyContent"></div>
-        </div>
+    <h1>Guess the JKT48 Member</h1>
+    <div id="question"></div>
+    <div id="picture"></div>
+    <div class="buttons">
+        <button onclick="answer(true)">Yes</button>
+        <button onclick="answer(false)">No</button>
     </div>
 
     <script>
-        const app = {
-            members: [],
-            possibleMembers: [],
-            currentQuestion: null,
-            gameOver: false,
-            answeredQuestions: [],
-            isThinking: false,
-            askedGeneration: null,
-            askedGraduated: false,
+        let members = [];
+        let currentQuestionIndex = 0;
+        let possibleMembers = [];
 
-            async init() {
-                await this.fetchMembers();
-                this.possibleMembers = [...this.members];
-                this.currentQuestion = this.generateQuestion();
-                this.render();
-            },
+        // Fetch the members' data from the URL
+        fetch('https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/members.json')
+            .then(response => response.json())
+            .then(data => {
+                members = data;
+                possibleMembers = members;
+                askQuestion();
+            })
+            .catch(error => {
+                console.error('Error fetching member data:', error);
+            });
 
-            async fetchMembers() {
-                const response = await fetch('https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/members.json');
-                this.members = await response.json();
-            },
+        function askQuestion() {
+            let question = "";
 
-            generateQuestion() {
-                if (this.askedGeneration === null) {
-                    return {
-                        text: "Apakah member ini dari generasi 1-13?",
-                        filter: (member, answer) => {
-                            if (answer) {
-                                this.askedGeneration = '1-13';
-                                return member.generation >= 1 && member.generation <= 13;
-                            } else {
-                                return true;
-                            }
-                        }
-                    };
-                }
+            if (currentQuestionIndex === 0) {
+                question = "Has the member graduated?";
+            } else if (currentQuestionIndex === 1) {
+                question = "Is the member a trainee?";
+            } else if (currentQuestionIndex === 2) {
+                question = "Which generation is the member from? (1-13)";
+            }
 
-                if (this.askedGeneration === '1-13' && !this.askedGraduated) {
-                    return {
-                        text: "Apakah member ini dari generasi 1-7?",
-                        filter: (member, answer) => {
-                            if (answer) {
-                                this.askedGeneration = '1-7';
-                                return member.generation <= 7;
-                            } else {
-                                this.askedGeneration = '8-13';
-                                return member.generation > 7;
-                            }
-                        }
-                    };
-                }
+            document.getElementById('question').innerText = question;
+        }
 
-                if (this.askedGeneration === '1-7' && !this.askedGraduated) {
-                    return {
-                        text: "Apakah member ini dari generasi 1-4?",
-                        filter: (member, answer) => {
-                            if (answer) {
-                                this.askedGeneration = '1-4';
-                                return member.generation <= 4;
-                            } else {
-                                this.askedGeneration = '5-7';
-                                return member.generation >= 5 && member.generation <= 7;
-                            }
-                        }
-                    };
-                }
-
-                if (this.askedGeneration === '8-13' && !this.askedGraduated) {
-                    return {
-                        text: "Apakah member ini dari generasi 8-10?",
-                        filter: (member, answer) => {
-                            if (answer) {
-                                this.askedGeneration = '8-10';
-                                return member.generation >= 8 && member.generation <= 10;
-                            } else {
-                                this.askedGeneration = '11-13';
-                                return member.generation >= 11;
-                            }
-                        }
-                    };
-                }
-
-                if (this.askedGeneration === '1-4' && !this.askedGraduated) {
-                    return {
-                        text: "Apakah member ini dari generasi 1-2?",
-                        filter: (member, answer) => {
-                            if (answer) {
-                                this.askedGeneration = '1-2';
-                                return member.generation <= 2;
-                            } else {
-                                this.askedGeneration = '3-4';
-                                return member.generation >= 3 && member.generation <= 4;
-                            }
-                        }
-                    };
-                }
-
-                if (this.askedGeneration === '5-7' && !this.askedGraduated) {
-                    return {
-                        text: "Apakah member ini dari generasi 5-6?",
-                        filter: (member, answer) => {
-                            if (answer) {
-                                this.askedGeneration = '5-6';
-                                return member.generation >= 5 && member.generation <= 6;
-                            } else {
-                                this.askedGeneration = '7';
-                                return member.generation === 7;
-                            }
-                        }
-                    };
-                }
-
-                if (!this.askedGraduated) {
-                    return {
-                        text: "Apakah member ini sudah lulus (graduated)?",
-                        filter: (member, answer) => {
-                            this.askedGraduated = true;
-                            return answer ? member.graduated : !member.graduated;
-                        }
-                    };
-                }
-
-                return null;
-            },
-
-            async filterMembers(answer) {
-                this.isThinking = true;
-                this.render();
-
-                await new Promise(resolve => setTimeout(resolve, 800));
-
-                const question = this.currentQuestion || this.generateQuestion();
-                this.possibleMembers = this.possibleMembers.filter(member => question.filter(member, answer));
-
-                this.answeredQuestions.push({
-                    question: question.text,
-                    answer: answer ? "Ya" : "Tidak"
-                });
-
-                const nextQuestion = this.generateQuestion();
-                if (!nextQuestion || this.possibleMembers.length === 1) {
-                    this.gameOver = true;
+        function answer(isYes) {
+            if (currentQuestionIndex === 0) {
+                possibleMembers = possibleMembers.filter(member => member.graduated === isYes);
+            } else if (currentQuestionIndex === 1) {
+                possibleMembers = possibleMembers.filter(member => member.trainee === isYes);
+            } else if (currentQuestionIndex === 2) {
+                const generation = prompt("Please enter the generation number (1-13):");
+                if (generation >= 1 && generation <= 13) {
+                    possibleMembers = possibleMembers.filter(member => member.generation === parseInt(generation));
                 } else {
-                    this.currentQuestion = nextQuestion;
-                }
-
-                this.isThinking = false;
-                this.render();
-            },
-
-            handleRestart() {
-                this.possibleMembers = [...this.members];
-                this.askedGeneration = null;
-                this.askedGraduated = false;
-                this.gameOver = false;
-                this.answeredQuestions = [];
-                this.currentQuestion = this.generateQuestion();
-                this.render();
-            },
-
-            render() {
-                const gameContent = document.getElementById('gameContent');
-                const memberCount = document.getElementById('memberCount');
-                const progressBar = document.getElementById('progressBar');
-                const historyElement = document.getElementById('history');
-                const historyContent = document.getElementById('historyContent');
-
-                memberCount.textContent = `Tersisa ${this.possibleMembers.length} member dari ${this.members.length} total`;
-
-                const progress = ((this.members.length - this.possibleMembers.length) / this.members.length) * 100;
-                progressBar.style.width = `${progress}%`;
-
-                if (!this.gameOver) {
-                    if (this.isThinking) {
-                        gameContent.innerHTML = `
-                            <div class="text-center">
-                                <div class="animate-pulse" style="font-size: 48px;">🧠</div>
-                                <p style="font-size: 18px;">Sedang berpikir...</p>
-                            </div>
-                        `;
-                    } else {
-                        gameContent.innerHTML = `
-                            <div class="text-center">
-                                <div style="font-size: 48px;">🔍</div>
-                                <p style="font-size: 20px; font-weight: 500;">${this.currentQuestion.text}</p>
-                            </div>
-                            <div class="flex justify-center gap-4">
-                                <button class="button button-green" onclick="app.filterMembers(true)">Ya</button>
-                                <button class="button button-red" onclick="app.filterMembers(false)">Tidak</button>
-                            </div>
-                        `;
-                    }
-                } else {
-                    if (this.possibleMembers.length === 1) {
-                        const member = this.possibleMembers[0];
-                        gameContent.innerHTML = `
-                            <div class="text-center">
-                                <img src="${member.picture}" alt="${member.name}" class="member-image">
-                                <h2 style="font-size: 24px; font-weight: bold; margin-bottom: 8px;">
-                                    Saya tebak membernya adalah:
-                                </h2>
-                                <p style="font-size: 20px; margin-bottom: 16px;">${member.name}</p>
-                                <div style="text-align: left; max-width: 300px; margin: 0 auto;">
-                                    <h3 style="font-weight: 600; margin-bottom: 8px;">Detail Member:</h3>
-                                    <p>Generasi: ${member.generation}</p>
-                                    <p>Status: ${member.graduated ? 'Graduated' : member.trainee ? 'Trainee' : 'Active'}</p>
-                                </div>
-                            </div>
-                        `;
-                    } else {
-                        gameContent.innerHTML = `
-                            <div class="text-center">
-                                <div style="font-size: 64px;">🔍</div>
-                                <p style="font-size: 20px; margin-bottom: 16px;">
-                                    Masih ada ${this.possibleMembers.length} member yang cocok dengan kriteria
-                                </p>
-                                <p style="font-size: 18px;">
-                                    Coba main lagi dengan pertanyaan yang berbeda!
-                                </p>
-                            </div>
-                        `;
-                    }
-                    gameContent.innerHTML += `
-                        <div class="text-center" style="margin-top: 32px;">
-                            <button class="button" onclick="app.handleRestart()">Main Lagi</button>
-                        </div>
-                    `;
-                }
-
-                if (this.answeredQuestions.length > 0) {
-                    historyElement.style.display = 'block';
-                    historyContent.innerHTML = this.answeredQuestions.map((item, index) => `
-                        <div class="history-item">
-                            <span>${item.question}</span>
-                            <span class="${item.answer === 'Ya' ? 'text-green' : 'text-red'}">${item.answer}</span>
-                        </div>
-                    `).join('');
-                } else {
-                    historyElement.style.display = 'none';
+                    alert("Please enter a valid generation number (1-13).");
+                    return;
                 }
             }
-        };
 
-        app.init();
+            currentQuestionIndex++;
+
+            if (possibleMembers.length === 1) {
+                const member = possibleMembers[0];
+                document.getElementById('question').innerText = `I guessed! It's ${member.name}.`;
+                document.getElementById('picture').innerHTML = `<img src="${member.picture}" alt="${member.name}" width="200">`;
+                document.querySelector('.buttons').style.display = 'none';
+            } else if (possibleMembers.length > 1) {
+                askQuestion();
+            } else {
+                document.getElementById('question').innerText = "Sorry, I couldn't guess the member.";
+                document.querySelector('.buttons').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
