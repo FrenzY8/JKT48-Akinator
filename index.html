@@ -60,9 +60,9 @@
 </head>
 <body>
     <div class="game-container">
-        <h1>Tebak Anggotas</h1>
+        <h1>Tebak Anggota</h1>
         <div id="question-container">
-            <p id="question">Apakah anggota ini dari generasi 1?</p>
+            <p id="question">Apakah anggota ini sudah lulus?</p>
             <button class="answer-btn" onclick="nextQuestion(true)">Ya</button>
             <button class="answer-btn" onclick="nextQuestion(false)">Tidak</button>
         </div>
@@ -78,17 +78,20 @@
         let currentQuestion = 0;
         let possibleMembers = [];
         let selectedGeneration = null;
+        let isGraduate = null;
+        let isTrainee = null;
         let firstLetterGuess = null;
         let lastLetterGuess = null;
 
-        // Menyimpan pertanyaan dalam urutan yang benar
         const questions = [
-            { question: 'Apakah anggota ini dari generasi 1?', property: 'generation' },
-            { question: 'Apakah huruf pertama dari nama anggota ini adalah G?', property: 'firstLetter' },
-            { question: 'Apakah huruf terakhir dari nama anggota ini adalah A?', property: 'lastLetter' }
+            { question: 'Apakah anggota ini sudah lulus?', property: 'graduated' },
+            { question: 'Apakah anggota ini seorang trainee?', property: 'trainee' },
+            { question: 'Apakah huruf pertama dari nama anggota ini {}?', property: 'firstLetter' },
+            { question: 'Apakah huruf terakhir dari nama anggota ini {}?', property: 'lastLetter' },
+            { question: 'Apakah anggota ini dari generasi {}?', property: 'generation' }
         ];
 
-        // Mengambil data anggota dari file JSON
+        // Load the members data from the JSON file
         fetch('./membersData.json')
             .then(response => response.json())
             .then(data => {
@@ -99,22 +102,25 @@
             .catch(err => console.error('Error loading members data:', err));
 
         function startGame() {
+            // Mulai permainan dengan menanyakan apakah anggota sudah lulus
             askQuestion(currentQuestion);
         }
 
         function askQuestion(questionIndex) {
             const question = questions[questionIndex];
-            if (question.property === 'generation') {
-                // Menampilkan pertanyaan tentang generasi
-                document.getElementById('question').textContent = `Apakah anggota ini dari generasi 1?`;
-            } else if (question.property === 'firstLetter') {
-                // Menanyakan huruf pertama dari nama
+
+            // Pertanyaan mengenai huruf pertama atau huruf terakhir
+            if (question.property === 'firstLetter') {
                 const firstLetter = possibleMembers[0].name.charAt(0).toUpperCase();
-                document.getElementById('question').textContent = `Apakah huruf pertama dari nama anggota ini adalah ${firstLetter}?`;
+                document.getElementById('question').textContent = `Apakah huruf pertama dari nama anggota ini ${firstLetter}?`;
             } else if (question.property === 'lastLetter') {
-                // Menanyakan huruf terakhir dari nama
                 const lastLetter = possibleMembers[0].name.slice(-1).toUpperCase();
-                document.getElementById('question').textContent = `Apakah huruf terakhir dari nama anggota ini adalah ${lastLetter}?`;
+                document.getElementById('question').textContent = `Apakah huruf terakhir dari nama anggota ini ${lastLetter}?`;
+            } else if (question.property === 'generation') {
+                const generationOptions = [...new Set(possibleMembers.map(member => member.generation))];
+                document.getElementById('question').textContent = `Apakah anggota ini dari generasi ${generationOptions.join(' atau ')}?`;
+            } else {
+                document.getElementById('question').textContent = question.question;
             }
 
             document.getElementById('question-container').classList.remove('hidden');
@@ -123,41 +129,76 @@
         function nextQuestion(answer) {
             const question = questions[currentQuestion];
 
-            if (question.property === 'generation') {
-                // Menentukan generasi anggota
-                if (answer) {
-                    selectedGeneration = 1;
-                    possibleMembers = possibleMembers.filter(member => member.generation === 1);
+            if (question.property === 'graduated') {
+                isGraduate = answer;
+                if (isGraduate) {
+                    possibleMembers = possibleMembers.filter(member => member.graduated === true);
                 } else {
-                    selectedGeneration = null;
-                    possibleMembers = possibleMembers.filter(member => member.generation !== 1);
+                    possibleMembers = possibleMembers.filter(member => member.graduated === false);
                 }
-                // Lanjutkan ke pertanyaan huruf pertama
+                // Tanya apakah anggota ini trainee
                 currentQuestion++;
                 askQuestion(currentQuestion);
-
+            } else if (question.property === 'trainee') {
+                isTrainee = answer;
+                if (isTrainee) {
+                    possibleMembers = possibleMembers.filter(member => member.trainee === true);
+                } else {
+                    possibleMembers = possibleMembers.filter(member => member.trainee === false);
+                }
+                // Setelah itu, kita akan tanya generasi jika kita sudah tahu graduate atau trainee
+                currentQuestion++;
+                askGenerationQuestion();
             } else if (question.property === 'firstLetter') {
-                // Menentukan huruf pertama nama anggota
+                firstLetterGuess = answer;
                 const firstLetter = possibleMembers[0].name.charAt(0).toUpperCase();
-                if (answer) {
-                    possibleMembers = possibleMembers.filter(member => member.name.charAt(0).toUpperCase() === firstLetter);
-                } else {
-                    possibleMembers = possibleMembers.filter(member => member.name.charAt(0).toUpperCase() !== firstLetter);
-                }
-                // Lanjutkan ke pertanyaan huruf terakhir
+                possibleMembers = possibleMembers.filter(member => member.name.charAt(0).toUpperCase() === firstLetter);
                 currentQuestion++;
-                askQuestion(currentQuestion);
-
+                askNext();
             } else if (question.property === 'lastLetter') {
-                // Menentukan huruf terakhir nama anggota
+                lastLetterGuess = answer;
                 const lastLetter = possibleMembers[0].name.slice(-1).toUpperCase();
-                if (answer) {
-                    possibleMembers = possibleMembers.filter(member => member.name.slice(-1).toUpperCase() === lastLetter);
-                } else {
-                    possibleMembers = possibleMembers.filter(member => member.name.slice(-1).toUpperCase() !== lastLetter);
-                }
-                // Menampilkan hasil tebakan
+                possibleMembers = possibleMembers.filter(member => member.name.slice(-1).toUpperCase() === lastLetter);
+                currentQuestion++;
+                askNext();
+            } else if (question.property === 'generation') {
+                selectedGeneration = answer;
+                filterByGeneration();
+            }
+        }
+
+        function askGenerationQuestion() {
+            // Hanya tanya generasi jika graduate dan trainee sudah ditentukan
+            if (possibleMembers.length === 1) {
                 displayMember(possibleMembers[0]);
+                return;
+            }
+            const generationOptions = [...new Set(possibleMembers.map(member => member.generation))];
+            if (generationOptions.length > 1) {
+                document.getElementById('question').textContent = `Apakah anggota ini dari generasi ${generationOptions.join(' atau ')}?`;
+                document.getElementById('question-container').classList.remove('hidden');
+            } else {
+                selectedGeneration = generationOptions[0];
+                filterByGeneration();
+            }
+        }
+
+        function filterByGeneration() {
+            if (selectedGeneration !== null) {
+                possibleMembers = possibleMembers.filter(member => member.generation === selectedGeneration);
+            }
+            if (possibleMembers.length === 1) {
+                displayMember(possibleMembers[0]);
+            } else {
+                alert('Maaf, saya tidak bisa menebak!');
+            }
+        }
+
+        function askNext() {
+            if (possibleMembers.length === 1) {
+                displayMember(possibleMembers[0]);
+            } else {
+                alert('Maaf, saya tidak bisa menebak!');
             }
         }
 
