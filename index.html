@@ -3,204 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Permainan Tebak Anggota</title>
+    <title>Akinator JKT48</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
         }
 
-        .game-container {
-            background-color: white;
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
             padding: 20px;
-            border-radius: 10px;
+            background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
+            border-radius: 8px;
         }
 
-        #question-container {
+        .card {
             margin-bottom: 20px;
         }
 
-        .answer-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .card-header {
+            text-align: center;
         }
 
-        .answer-btn:hover {
-            background-color: #45a049;
+        .card-header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .card-header p {
+            font-size: 1rem;
+            color: gray;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background-color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .thinking-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
         .hidden {
             display: none;
         }
 
-        #member-container {
-            text-align: center;
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
-        #member-picture {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .no {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #game-over-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #question-history {
+            margin-top: 30px;
+        }
+
+        #history-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #history-list li {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Tebak Anggota</h1>
-        <div id="question-container">
-            <p id="question">Apakah anggota ini sudah lulus?</p>
-            <button class="answer-btn" onclick="nextQuestion(true)">Ya</button>
-            <button class="answer-btn" onclick="nextQuestion(false)">Tidak</button>
+    <div class="container">
+        <div class="card">
+            <header class="card-header">
+                <h1>Akinator JKT48</h1>
+                <p id="member-count"></p>
+            </header>
+            <div class="card-content">
+                <div id="progress-bar" class="progress-bar"></div>
+
+                <div id="question-section">
+                    <div id="thinking-section" class="hidden">
+                        <div class="thinking-icon">🧠</div>
+                        <p>Sedang berpikir...</p>
+                    </div>
+                    <div id="question" class="hidden">
+                        <p id="question-text"></p>
+                        <div class="button-group">
+                            <button id="yes-button" class="btn yes">Ya</button>
+                            <button id="no-button" class="btn no">Tidak</button>
+                        </div>
+                    </div>
+                    <div id="game-over-section" class="hidden">
+                        <div id="game-over-text"></div>
+                        <button id="restart-button" class="btn">Main Lagi</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="member-container" class="hidden">
-            <h2>Kami menebak ini adalah...</h2>
-            <img id="member-picture" src="" alt="Anggota" />
-            <p id="member-name"></p>
+        <div id="question-history" class="hidden">
+            <h2>Riwayat Pertanyaan</h2>
+            <ul id="history-list"></ul>
         </div>
     </div>
 
     <script>
+        const membersUrl = 'https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/members.json';
+
         let members = [];
-        let currentQuestion = 0;
         let possibleMembers = [];
-        let selectedGeneration = null;
-        let firstLetterGuess = null;
-        let lastLetterGuess = null;
+        let currentQuestion = null;
+        let gameOver = false;
+        let askedGeneration = null;
+        let askedGraduated = false;
+        let answeredQuestions = [];
 
-        const questions = [
-            { question: 'Apakah anggota ini sudah lulus?', property: 'graduated' },
-            { question: 'Apakah anggota ini seorang trainee?', property: 'trainee' },
-            { question: 'Apakah huruf pertama dari nama anggota ini?', property: 'firstLetter' },
-            { question: 'Apakah huruf terakhir dari nama anggota ini?', property: 'lastLetter' },
-            { question: 'Apakah anggota ini dari generasi {}?', property: 'generation' }
-        ];
-
-        // Load the members data from the JSON file
-        fetch('./membersData.json')
-            .then(response => response.json())
-            .then(data => {
-                members = data;
-                possibleMembers = members;
-                startGame();
-            })
-            .catch(err => console.error('Error loading members data:', err));
-
-        function startGame() {
-            askQuestion(currentQuestion);
+        // Fetch members from the external URL
+        async function fetchMembers() {
+            const response = await fetch(membersUrl);
+            const data = await response.json();
+            return data;
         }
 
-        function askQuestion(questionIndex) {
-            const question = questions[questionIndex];
+        // Generate the next question
+        function generateQuestion() {
+            if (askedGeneration === null) {
+                return {
+                    text: "Apakah member ini dari generasi 1-13?",
+                    filter: (member, answer) => {
+                        if (answer) {
+                            askedGeneration = '1-13';
+                            return member.generation >= 1 && member.generation <= 13;
+                        }
+                        return true;
+                    }
+                };
+            }
 
-            // Pertanyaan mengenai huruf pertama atau huruf terakhir
-            if (question.property === 'firstLetter') {
-                const firstLetter = possibleMembers[0].name.charAt(0).toUpperCase();
-                document.getElementById('question').textContent = `Apakah huruf pertama dari nama anggota ini ${firstLetter}?`;
-            } else if (question.property === 'lastLetter') {
-                const lastLetter = possibleMembers[0].name.slice(-1).toUpperCase();
-                document.getElementById('question').textContent = `Apakah huruf terakhir dari nama anggota ini ${lastLetter}?`;
-            } else if (question.property === 'generation') {
-                const generationOptions = [...new Set(possibleMembers.map(member => member.generation))];
-                document.getElementById('question').textContent = `Apakah anggota ini dari generasi ${generationOptions.join(' atau ')}?`;
+            // Generation-specific questions
+            if (askedGeneration === '1-13' && !askedGraduated) {
+                return {
+                    text: "Apakah member ini sudah lulus (graduated)?",
+                    filter: (member, answer) => {
+                        askedGraduated = true;
+                        return answer ? member.graduated : !member.graduated;
+                    }
+                };
+            }
+
+            return null;
+        }
+
+        // Handle answer and filter members
+        function filterMembers(answer) {
+            const question = currentQuestion || generateQuestion();
+            const filtered = possibleMembers.filter(member => question.filter(member, answer));
+
+            answeredQuestions.push({ question: question.text, answer: answer ? "Ya" : "Tidak" });
+            possibleMembers = filtered;
+
+            const nextQuestion = generateQuestion();
+            if (!nextQuestion || filtered.length === 1) {
+                gameOver = true;
             } else {
-                document.getElementById('question').textContent = question.question;
+                currentQuestion = nextQuestion;
             }
 
-            document.getElementById('question-container').classList.remove('hidden');
+            updateUI();
         }
 
-        function nextQuestion(answer) {
-            const question = questions[currentQuestion];
+        // Update the UI based on the current game state
+        function updateUI() {
+            const memberCountText = `Tersisa ${possibleMembers.length} member dari ${members.length} total`;
+            document.getElementById('member-count').textContent = memberCountText;
 
-            if (question.property === 'graduated') {
-                if (answer) {
-                    // Jika sudah lulus, langsung tanyakan generasi
-                    possibleMembers = possibleMembers.filter(member => member.graduated === true);
-                    currentQuestion++;
-                    askGenerationQuestion();
-                } else {
-                    // Jika belum lulus, lanjutkan ke pertanyaan trainee
-                    possibleMembers = possibleMembers.filter(member => member.graduated === false);
-                    currentQuestion++;
-                    askTraineeQuestion();
-                }
-            } else if (question.property === 'trainee') {
-                possibleMembers = possibleMembers.filter(member => member.trainee === answer);
-                currentQuestion++;
-                askGenerationQuestion();
-            } else if (question.property === 'firstLetter') {
-                firstLetterGuess = answer;
-                const firstLetter = possibleMembers[0].name.charAt(0).toUpperCase();
-                possibleMembers = possibleMembers.filter(member => member.name.charAt(0).toUpperCase() === firstLetter);
-                currentQuestion++;
-                askNext();
-            } else if (question.property === 'lastLetter') {
-                lastLetterGuess = answer;
-                const lastLetter = possibleMembers[0].name.slice(-1).toUpperCase();
-                possibleMembers = possibleMembers.filter(member => member.name.slice(-1).toUpperCase() === lastLetter);
-                currentQuestion++;
-                askNext();
-            } else if (question.property === 'generation') {
-                selectedGeneration = answer;
-                filterByGeneration();
-            }
-        }
+            const progress = ((members.length - possibleMembers.length) / members.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
 
-        function askGenerationQuestion() {
-            if (possibleMembers.length === 1) {
-                displayMember(possibleMembers[0]);
+            if (gameOver) {
+                displayGameOver();
             } else {
-                const generationOptions = [...new Set(possibleMembers.map(member => member.generation))];
-                document.getElementById('question').textContent = `Apakah anggota ini dari generasi ${generationOptions.join(' atau ')}?`;
-                document.getElementById('question-container').classList.remove('hidden');
+                displayQuestion();
             }
+
+            // Update history
+            const historyList = document.getElementById('history-list');
+            historyList.innerHTML = '';
+            answeredQuestions.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${item.question} <span class="${item.answer === 'Ya' ? 'green' : 'red'}">${item.answer}</span>`;
+                historyList.appendChild(listItem);
+            });
         }
 
-        function askTraineeQuestion() {
-            // Tanyakan trainee jika jawabannya tidak lulus
-            document.getElementById('question').textContent = 'Apakah anggota ini seorang trainee?';
-            document.getElementById('question-container').classList.remove('hidden');
+        // Display the current question
+        function displayQuestion() {
+            document.getElementById('thinking-section').classList.add('hidden');
+            document.getElementById('game-over-section').classList.add('hidden');
+            document.getElementById('question-section').classList.remove('hidden');
+
+            const questionText = currentQuestion.text;
+            document.getElementById('question-text').textContent = questionText;
+
+            document.getElementById('yes-button').onclick = () => filterMembers(true);
+            document.getElementById('no-button').onclick = () => filterMembers(false);
         }
 
-        function filterByGeneration() {
-            if (selectedGeneration !== null) {
-                possibleMembers = possibleMembers.filter(member => member.generation === selectedGeneration);
-            }
-            if (possibleMembers.length === 1) {
-                displayMember(possibleMembers[0]);
-            } else {
-                alert('Maaf, saya tidak bisa menebak!');
-            }
+        // Display the game over message
+        function displayGameOver() {
+            document.getElementById('question-section').classList.add('hidden');
+            document.getElementById('thinking-section').classList.add('hidden');
+            document.getElementById('game-over-section').classList.remove('hidden');
+
+            const gameOverText = possibleMembers.length === 1
+                ? `Saya tebak membernya adalah: ${possibleMembers[0].name}`
+                : `Masih ada ${possibleMembers.length} member yang cocok dengan kriteria`;
+            document.getElementById('game-over-text').textContent = gameOverText;
         }
 
-        function askNext() {
-            if (possibleMembers.length === 1) {
-                displayMember(possibleMembers[0]);
-            } else {
-                alert('Maaf, saya tidak bisa menebak!');
-            }
+        // Restart the game
+        function restartGame() {
+            askedGeneration = null;
+            askedGraduated = false;
+            gameOver = false;
+            answeredQuestions = [];
+            possibleMembers = [...members];
+            currentQuestion = generateQuestion();
+            updateUI();
         }
 
-        function displayMember(member) {
-            document.getElementById('question-container').classList.add('hidden');
-            document.getElementById('member-picture').src = member.picture;
-            document.getElementById('member-name').textContent = member.name;
-            document.getElementById('member-container').classList.remove('hidden');
+        // Initialize game
+        async function initGame() {
+            members = await fetchMembers();
+            possibleMembers = [...members];
+            currentQuestion = generateQuestion();
+            updateUI();
+
+            document.getElementById('restart-button').onclick = restartGame;
         }
+
+        // Start the game
+        initGame();
     </script>
 </body>
 </html>
