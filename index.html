@@ -60,7 +60,7 @@
 </head>
 <body>
     <div class="game-container">
-        <h1>Tebak Anggota1</h1>
+        <h1>Tebak Anggota</h1>
         <div id="question-container">
             <p id="question">Apakah anggota ini sudah lulus?</p>
             <button class="answer-btn" onclick="nextQuestion(true)">Ya</button>
@@ -77,6 +77,9 @@
         let members = [];
         let currentQuestion = 0;
         let possibleMembers = [];
+        let selectedGeneration = null;
+        let firstLetterGuess = null;
+        let lastLetterGuess = null;
 
         const questions = [
             { question: 'Apakah anggota ini sudah lulus?', property: 'graduated' },
@@ -124,37 +127,69 @@
             const question = questions[currentQuestion];
 
             if (question.property === 'graduated') {
-                possibleMembers = possibleMembers.filter(member => member.graduated === answer);
-                currentQuestion++;
-                askNext();
+                if (answer) {
+                    // Jika sudah lulus, langsung tanyakan generasi
+                    possibleMembers = possibleMembers.filter(member => member.graduated === true);
+                    currentQuestion++;
+                    askGenerationQuestion();
+                } else {
+                    // Jika belum lulus, lanjutkan ke pertanyaan trainee
+                    possibleMembers = possibleMembers.filter(member => member.graduated === false);
+                    currentQuestion++;
+                    askTraineeQuestion();
+                }
             } else if (question.property === 'trainee') {
                 possibleMembers = possibleMembers.filter(member => member.trainee === answer);
                 currentQuestion++;
-                askNext();
+                askGenerationQuestion();
             } else if (question.property === 'firstLetter') {
+                firstLetterGuess = answer;
                 const firstLetter = possibleMembers[0].name.charAt(0).toUpperCase();
                 possibleMembers = possibleMembers.filter(member => member.name.charAt(0).toUpperCase() === firstLetter);
                 currentQuestion++;
                 askNext();
             } else if (question.property === 'lastLetter') {
+                lastLetterGuess = answer;
                 const lastLetter = possibleMembers[0].name.slice(-1).toUpperCase();
                 possibleMembers = possibleMembers.filter(member => member.name.slice(-1).toUpperCase() === lastLetter);
                 currentQuestion++;
                 askNext();
             } else if (question.property === 'generation') {
+                selectedGeneration = answer;
+                filterByGeneration();
+            }
+        }
+
+        function askGenerationQuestion() {
+            if (possibleMembers.length === 1) {
+                displayMember(possibleMembers[0]);
+            } else {
                 const generationOptions = [...new Set(possibleMembers.map(member => member.generation))];
-                const selectedGeneration = generationOptions.length === 1 ? generationOptions[0] : answer;
+                document.getElementById('question').textContent = `Apakah anggota ini dari generasi ${generationOptions.join(' atau ')}?`;
+                document.getElementById('question-container').classList.remove('hidden');
+            }
+        }
+
+        function askTraineeQuestion() {
+            // Tanyakan trainee jika jawabannya tidak lulus
+            document.getElementById('question').textContent = 'Apakah anggota ini seorang trainee?';
+            document.getElementById('question-container').classList.remove('hidden');
+        }
+
+        function filterByGeneration() {
+            if (selectedGeneration !== null) {
                 possibleMembers = possibleMembers.filter(member => member.generation === selectedGeneration);
-                currentQuestion++;
-                askNext();
+            }
+            if (possibleMembers.length === 1) {
+                displayMember(possibleMembers[0]);
+            } else {
+                alert('Maaf, saya tidak bisa menebak!');
             }
         }
 
         function askNext() {
             if (possibleMembers.length === 1) {
                 displayMember(possibleMembers[0]);
-            } else if (currentQuestion < questions.length) {
-                askQuestion(currentQuestion);
             } else {
                 alert('Maaf, saya tidak bisa menebak!');
             }
