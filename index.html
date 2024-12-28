@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akinator - Anggota</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #question-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result-container {
+            display: none;
+            text-align: center;
+        }
+
+        img {
+            max-width: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="question-container">
+        <h1>Tebak Anggota</h1>
+        <p id="question-text"></p>
+        <button onclick="answer(true)">Ya</button>
+        <button onclick="answer(false)">Tidak</button>
+    </div>
+
+    <div id="result-container">
+        <p id="result"></p>
+        <img id="result-picture" src="" alt="Anggota Foto" />
+    </div>
+
+    <script>
+        const members = [
+            {
+                "name": "Gabriela Margareth Warouw",
+                "picture": "/assets/member/gabriella.jpg",
+                "generation": 1,
+                "graduated": true,
+                "trainee": false
+            },
+            {
+                "name": "Allisa Astri",
+                "picture": "/assets/member/allisa_astri.jpg",
+                "generation": 1,
+                "graduated": true,
+                "trainee": false
+            }
+        ];
+
+        let currentMemberIndex = 0;
+        let currentQuestionIndex = 0;
+
+        const questions = [
+            {
+                text: "Apakah inisial dia G?",
+                key: "name",
+                value: "Gabriela"
+            },
+            {
+                text: "Apakah huruf akhirnya W?",
+                key: "name",
+                value: "Warouw"
+            },
+            {
+                text: "Apakah dia generasi ke-1?",
+                key: "generation",
+                value: 1
+            },
+            {
+                text: "Apakah dia seorang trainee?",
+                key: "trainee",
+                value: true
+            },
+            {
+                text: "Apakah dia sudah lulus?",
+                key: "graduated",
+                value: true
+            }
+        ];
+
+        function displayResult(member) {
+            const resultText = `Nama: ${member.name}`;
+            document.getElementById('result').innerText = resultText;
+            document.getElementById('result-picture').src = member.picture;
+            document.getElementById('result-container').style.display = 'block';
+            document.getElementById('question-container').style.display = 'none';
+        }
+
+        function answer(userAnswer) {
+            const question = questions[currentQuestionIndex];
+            const member = members[currentMemberIndex];
+
+            if ((userAnswer && member[question.key] === question.value) || (!userAnswer && member[question.key] !== question.value)) {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    document.getElementById('question-text').innerText = questions[currentQuestionIndex].text;
+                } else {
+                    displayResult(member);
+                }
+            } else {
+                currentMemberIndex = (currentMemberIndex + 1) % members.length;
+                currentQuestionIndex = 0;
+                alert('Coba lagi!');
+                document.getElementById('question-text').innerText = questions[currentQuestionIndex].text;
+            }
+        }
+
+        document.getElementById('question-text').innerText = questions[currentQuestionIndex].text;
+    </script>
+</body>
+</html>
