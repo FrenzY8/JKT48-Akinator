@@ -1,133 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akinator - Anggota</title>
+    <title>Permainan Tebak Anggota</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+        }
+
+        .game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
         }
 
         #question-container {
-            text-align: center;
             margin-bottom: 20px;
         }
 
-        button {
+        .answer-btn {
+            background-color: #4CAF50;
+            color: white;
             padding: 10px 20px;
             margin: 10px;
-            font-size: 16px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        #result-container {
+        .answer-btn:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
             display: none;
+        }
+
+        #member-container {
             text-align: center;
         }
 
-        img {
-            max-width: 200px;
-            margin-top: 10px;
+        #member-picture {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
-    <div id="question-container">
+    <div class="game-container">
         <h1>Tebak Anggota</h1>
-        <p id="question-text"></p>
-        <button onclick="answer(true)">Ya</button>
-        <button onclick="answer(false)">Tidak</button>
-    </div>
-
-    <div id="result-container">
-        <p id="result"></p>
-        <img id="result-picture" src="" alt="Anggota Foto" />
+        <div id="question-container">
+            <p id="question">Apakah anggota ini sudah lulus?</p>
+            <button class="answer-btn" onclick="nextQuestion(true)">Ya</button>
+            <button class="answer-btn" onclick="nextQuestion(false)">Tidak</button>
+        </div>
+        <div id="member-container" class="hidden">
+            <h2>Kami menebak ini adalah...</h2>
+            <img id="member-picture" src="" alt="Anggota" />
+            <p id="member-name"></p>
+        </div>
     </div>
 
     <script>
-        const members = [
-            {
-                "name": "Gabriela Margareth Warouw",
-                "picture": "/assets/member/gabriella.jpg",
-                "generation": 1,
-                "graduated": true,
-                "trainee": false
-            },
-            {
-                "name": "Allisa Astri",
-                "picture": "/assets/member/allisa_astri.jpg",
-                "generation": 1,
-                "graduated": true,
-                "trainee": false
-            }
-        ];
-
-        let currentMemberIndex = 0;
-        let currentQuestionIndex = 0;
+        let members = [];
+        let currentQuestion = 0;
+        let possibleMembers = [];
+        let generationGuess = 1;
+        let currentLetterIndex = 0;
 
         const questions = [
-            {
-                text: "Apakah inisial dia G?",
-                key: "name",
-                value: "Gabriela"
-            },
-            {
-                text: "Apakah huruf akhirnya W?",
-                key: "name",
-                value: "Warouw"
-            },
-            {
-                text: "Apakah dia generasi ke-1?",
-                key: "generation",
-                value: 1
-            },
-            {
-                text: "Apakah dia seorang trainee?",
-                key: "trainee",
-                value: true
-            },
-            {
-                text: "Apakah dia sudah lulus?",
-                key: "graduated",
-                value: true
-            }
+            { question: 'Apakah anggota ini sudah lulus?', property: 'graduated' },
+            { question: 'Apakah anggota ini seorang trainee?', property: 'trainee' },
+            { question: 'Apakah anggota ini dari generasi ${generation}?', property: 'generation' },
+            { question: 'Apakah huruf pertama dari nama anggota ini {letter}?', property: 'firstLetter' },
+            { question: 'Apakah huruf terakhir dari nama anggota ini {letter}?', property: 'lastLetter' }
         ];
 
-        function displayResult(member) {
-            const resultText = `Nama: ${member.name}`;
-            document.getElementById('result').innerText = resultText;
-            document.getElementById('result-picture').src = member.picture;
-            document.getElementById('result-container').style.display = 'block';
-            document.getElementById('question-container').style.display = 'none';
-        }
+        // Load the members data from the JSON file
+        fetch('./membersData.json')
+            .then(response => response.json())
+            .then(data => {
+                members = data;
+                possibleMembers = members;
+                startGame();
+            })
+            .catch(err => console.error('Error loading members data:', err));
 
-        function answer(userAnswer) {
-            const question = questions[currentQuestionIndex];
-            const member = members[currentMemberIndex];
-
-            if ((userAnswer && member[question.key] === question.value) || (!userAnswer && member[question.key] !== question.value)) {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < questions.length) {
-                    document.getElementById('question-text').innerText = questions[currentQuestionIndex].text;
-                } else {
-                    displayResult(member);
-                }
+        function startGame() {
+            if (possibleMembers.length > 1) {
+                askQuestion(currentQuestion);
             } else {
-                currentMemberIndex = (currentMemberIndex + 1) % members.length;
-                currentQuestionIndex = 0;
-                alert('Coba lagi!');
-                document.getElementById('question-text').innerText = questions[currentQuestionIndex].text;
+                displayMember(possibleMembers[0]);
             }
         }
 
-        document.getElementById('question-text').innerText = questions[currentQuestionIndex].text;
+        function askQuestion(questionIndex) {
+            const question = questions[questionIndex];
+
+            // Pertanyaan untuk generasi
+            if (question.property === 'generation') {
+                document.getElementById('question').textContent = `Apakah anggota ini dari generasi ${generationGuess}?`;
+            } else if (question.property === 'firstLetter') {
+                const firstLetter = possibleMembers[0].name.charAt(0).toUpperCase();
+                document.getElementById('question').textContent = `Apakah huruf pertama dari nama anggota ini ${firstLetter}?`;
+            } else if (question.property === 'lastLetter') {
+                const lastLetter = possibleMembers[0].name.slice(-1).toUpperCase();
+                document.getElementById('question').textContent = `Apakah huruf terakhir dari nama anggota ini ${lastLetter}?`;
+            } else {
+                document.getElementById('question').textContent = question.question;
+            }
+
+            document.getElementById('question-container').classList.remove('hidden');
+        }
+
+        function nextQuestion(answer) {
+            const question = questions[currentQuestion];
+
+            if (question.property === 'generation') {
+                // Filter berdasarkan generasi
+                possibleMembers = possibleMembers.filter(member => member.generation === generationGuess);
+
+                if (answer === false) {
+                    generationGuess++; // Berpindah ke generasi berikutnya jika jawabannya "Tidak"
+                }
+            } else if (question.property === 'firstLetter') {
+                const firstLetter = possibleMembers[0].name.charAt(0).toUpperCase();
+                possibleMembers = possibleMembers.filter(member => member.name.charAt(0).toUpperCase() === firstLetter);
+            } else if (question.property === 'lastLetter') {
+                const lastLetter = possibleMembers[0].name.slice(-1).toUpperCase();
+                possibleMembers = possibleMembers.filter(member => member.name.slice(-1).toUpperCase() === lastLetter);
+            } else {
+                // Filter berdasarkan "lulus" atau "trainee"
+                possibleMembers = possibleMembers.filter(member => member[question.property] === answer);
+            }
+
+            currentQuestion++;
+
+            if (possibleMembers.length === 1) {
+                displayMember(possibleMembers[0]);
+            } else if (currentQuestion < questions.length) {
+                askQuestion(currentQuestion);
+            } else {
+                alert('Maaf, saya tidak bisa menebak!');
+            }
+        }
+
+        function displayMember(member) {
+            document.getElementById('question-container').classList.add('hidden');
+            document.getElementById('member-picture').src = member.picture;
+            document.getElementById('member-name').textContent = member.name;
+            document.getElementById('member-container').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
