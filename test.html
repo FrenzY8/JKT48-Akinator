@@ -143,6 +143,7 @@
 
         if (question.key === 'graduated' && value === true) {
             askGen();
+            showPossibleMembers();
             return;
         }
 
@@ -190,6 +191,7 @@
             } else {
                 showResult(filteredMembers[0]);
             }
+            showPossibleMembers();
         } else {
             const randomNumber = Math.floor(Math.random() * 13) + 1; // Random value between 1 and 13
             document.getElementById('question').innerText = `Does the member's generation is ${randomNumber}?`;
