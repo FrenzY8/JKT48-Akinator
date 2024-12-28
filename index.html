@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48 Member</h1>
+    <h1>Guess the JKT48</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -212,6 +212,7 @@
             <button class="answer" onclick="filterGeneration(12)">12</button>
             <button class="answer" onclick="filterGeneration(13)">13</button>
         `;
+        showPossibleMembers();
     }
 
     function filterGeneration(generation) {
