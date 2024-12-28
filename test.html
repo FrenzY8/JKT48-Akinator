@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48</h1>
+    <h1>Guess the JKT48 Mem</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -170,7 +170,7 @@
     function filterGenerationAll(generation) {
         if (generation) {
             currentGeneration = generation;
-            filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration && member.graduate === false);
+            filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration && member.graduated === false);
             askInitialLetter();
             showPossibleMembers();
         } else {
