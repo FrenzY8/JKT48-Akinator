@@ -168,7 +168,29 @@
         `;
         showPossibleMembers()
     }
+    function askGenGrad() {
+        const randomNumber = Math.floor(Math.random() * 13) + 1; // Random value between 1 and 13
+        document.getElementById('question').innerText = 'Is the member from Generation ' + randomNumber;
+        currentQuestionIndex++;
 
+        // Wait for "yes" or "no" answer before filtering generation
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterGenerationGrad(${randomNumber})">Yes</button>
+            <button class="answer" onclick="filterGenerationGrad()">No</button>
+        `;
+        showPossibleMembers()
+    }
+    function filterGenerationGrad(generation) {
+        if (generation) {
+            currentGeneration = generation;
+            filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration && member.graduated === true);
+            askInitialLetter();
+            showPossibleMembers();
+        } else {
+            askGenGrad();
+        }
+        showPossibleMembers();
+    }
     function filterGenerationAll(generation) {
         if (generation) {
             currentGeneration = generation;
