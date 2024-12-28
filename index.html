@@ -50,6 +50,29 @@
             font-size: 24px;
             margin-top: 10px;
         }
+
+        .possible-members {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .possible-members img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .possible-members div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .possible-members p {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +89,7 @@
         <img id="result-img" src="" alt="Member Image">
         <p id="result-name"></p>
     </div>
+    <div id="possible-members" class="possible-members"></div>
 </div>
 
 <script>
@@ -129,6 +153,7 @@
 
         currentQuestionIndex++;
         askQuestion();
+        showPossibleMembers();
     }
 
     function showResult(member) {
@@ -136,6 +161,22 @@
         document.getElementById('result-img').src = "https://jkt48-member.vercel.app/assets/member/" + member.picture;
         document.getElementById('result-name').innerText = member.name;
         document.getElementById('answers').style.display = 'none';
+    }
+
+    function showPossibleMembers() {
+        const possibleMembersDiv = document.getElementById('possible-members');
+        possibleMembersDiv.innerHTML = '';
+
+        filteredMembers.forEach(member => {
+            const memberDiv = document.createElement('div');
+            const img = document.createElement('img');
+            img.src = "https://jkt48-member.vercel.app/assets/member/" + member.picture;
+            const name = document.createElement('p');
+            name.innerText = member.name;
+            memberDiv.appendChild(img);
+            memberDiv.appendChild(name);
+            possibleMembersDiv.appendChild(memberDiv);
+        });
     }
 
     loadData();
