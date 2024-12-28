@@ -170,7 +170,7 @@
         filteredMembers.forEach(member => {
             const memberDiv = document.createElement('div');
             const img = document.createElement('img');
-            img.src = "https://jkt48-member.vercel.app/assets/member/" + member.picture; // Corrected image URL
+            img.src = "https://jkt48-member.vercel.app" + member.picture; // Corrected image URL
             const name = document.createElement('p');
             name.innerText = member.name;
             memberDiv.appendChild(img);
