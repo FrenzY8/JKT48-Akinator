@@ -140,8 +140,10 @@
             askGenerationQuestion(); // 12 or 13?
             return;
         } else {
-            askGenAll();
-            return;
+            if (question.key === 'trainee' && value === false) {
+                askGenAll();
+                return;
+            }
         }
 
         if (question.key === 'graduated' && value === true) {
@@ -160,8 +162,8 @@
 
         // Wait for "yes" or "no" answer before filtering generation
         document.getElementById('answers').innerHTML = `
-            <button class="answer" onclick="filterGenerationAll(${randomNumber})">12</button>
-            <button class="answer" onclick="filterGenerationAll()">13</button>
+            <button class="answer" onclick="filterGenerationAll(${randomNumber})">Yes</button>
+            <button class="answer" onclick="filterGenerationAll()">No</button>
         `;
     }
 
