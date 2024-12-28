@@ -96,7 +96,7 @@
     let members = [];
     let currentQuestionIndex = 0;
     let filteredMembers = [];
-    let currentLetter = '';
+    let currentGeneration = null;
 
     function loadData() {
         fetch('https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/members.json')
@@ -114,31 +114,79 @@
             return;
         }
 
-        // Ask about the random letter until a valid answer is found
-        askRandomLetter();
+        const questions = [
+            { question: 'Is the member graduated?', key: 'graduated' },
+            { question: 'Is the member a trainee?', key: 'trainee' },
+        ];
+
+        if (currentQuestionIndex < questions.length) {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question').innerText = question.question;
+        } else {
+            showResult(filteredMembers[0]);
+        }
     }
 
-    function askRandomLetter() {
-        currentLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter A-Z
-        document.getElementById('question').innerText = `Does the member's name start with ${currentLetter}?`;
+    function answer(response) {
+        const question = [
+            { key: 'graduated' },
+            { key: 'trainee' }
+        ][currentQuestionIndex];
+
+        const value = response === 'yes' ? true : false;
+        filteredMembers = filteredMembers.filter(member => member[question.key] === value);
+
+        if (question.key === 'trainee' && value === true) {
+            askGenerationQuestion();
+            return;
+        }
+
+        currentQuestionIndex++;
+        askQuestion();
+        showPossibleMembers();
+    }
+
+    function askGenerationQuestion() {
+        document.getElementById('question').innerText = 'Is the member from Generation 12 or 13?';
+        currentQuestionIndex++;
+
+        // Wait for "yes" or "no" answer before filtering generation
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterGeneration(12)">12</button>
+            <button class="answer" onclick="filterGeneration(13)">13</button>
+        `;
+    }
+
+    function filterGeneration(generation) {
+        currentGeneration = generation;
+        filteredMembers = filteredMembers.filter(member => member.generation === currentGeneration);
+
+        askInitialLetter();
+    }
+
+    function askInitialLetter() {
+        const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
+        document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
 
         document.getElementById('answers').innerHTML = `
-            <button class="answer" onclick="filterByLetter('${currentLetter}')">Yes</button>
-            <button class="answer" onclick="askRandomLetter()">No</button>
+            <button class="answer" onclick="filterByLetter('${randomLetter}')">Yes</button>
+            <button class="answer" onclick="filterByLetter('')">No</button>
         `;
     }
 
     function filterByLetter(letter) {
-        filteredMembers = filteredMembers.filter(member => member.name.charAt(0).toUpperCase() === letter);
-
-        if (filteredMembers.length > 0) {
-            showResult(filteredMembers[0]);
+        if (letter) {
+            filteredMembers = filteredMembers.filter(member => member.name.charAt(0).toUpperCase() === letter);
         } else {
-            document.getElementById('question').innerText = `No member found with the name starting with ${letter}. Try again!`;
-            document.getElementById('answers').innerHTML = `
-                <button class="answer" onclick="askRandomLetter()">Try another letter</button>
-            `;
+            const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
+        document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
+
+        document.getElementById('answers').innerHTML = `
+            <button class="answer" onclick="filterByLetter('${randomLetter}')">Yes</button>
+            <button class="answer" onclick="filterByLetter('')">No</button>
+        `;
         }
+        showPossibleMembers();
     }
 
     function showResult(member) {
@@ -155,7 +203,7 @@
         filteredMembers.forEach(member => {
             const memberDiv = document.createElement('div');
             const img = document.createElement('img');
-            img.src = "https://jkt48-member.vercel.app" + member.picture; // Corrected image URL
+            img.src = "https://jkt48-member.vercel.app/" + member.picture; // Corrected image URL
             const name = document.createElement('p');
             name.innerText = member.name;
             memberDiv.appendChild(img);
