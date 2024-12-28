@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48</h1>
+    <h1>Guess the JKT48 Member</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -222,23 +222,25 @@
     }
     
     function askInitialLetter() {
-        const firstLetters = filteredMembers.map(member => member.name.charAt(0).toUpperCase());
-        const uniqueFirstLetters = [...new Set(firstLetters)];
-        const randomLetter = uniqueFirstLetters[Math.floor(Math.random() * uniqueFirstLetters.length)];
-        if (randomLetter == "undefined") {
-            document.getElementById('question').innerText = `That member doesnt found.`;
-            document.getElementById('answers').innerHTML = `
+    const firstLetters = filteredMembers.map(member => member.name.charAt(0).toUpperCase());
+    const uniqueFirstLetters = [...new Set(firstLetters)];
+    const randomLetter = uniqueFirstLetters[Math.floor(Math.random() * uniqueFirstLetters.length)];
+
+    if (typeof randomLetter === "undefined") {
+        document.getElementById('question').innerText = `That member doesn't found.`;
+        document.getElementById('answers').innerHTML = `
             <button class="answer" onclick="filterByLetter('')">Ok</button>
             <button class="answer" onclick="filterByLetter('')">Ok</button>
-    
-            `;
-        }
+        `;
+    } else {
         document.getElementById('question').innerText = `Does the member's name start with: ${randomLetter}?`;
         document.getElementById('answers').innerHTML = `
-        <button class="answer" onclick="filterByLetter('${randomLetter}')">Ya</button>
-        <button class="answer" onclick="filterByLetter('')">No</button>
-    `;
+            <button class="answer" onclick="filterByLetter('${randomLetter}')">Ya</button>
+            <button class="answer" onclick="filterByLetter('')">No</button>
+        `;
     }
+    }
+
 
     function filterByLetter(letter) {
         if (letter) {
