@@ -55,7 +55,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48 Member</h1>
+    <h1>Guess the JKT48</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -94,7 +94,7 @@
             { question: 'Is the member a trainee?', key: 'trainee' },
         ];
 
-        // Add random generation question
+        // Loop until user answers Yes to generation
         const randomGeneration = Math.floor(Math.random() * 13) + 1;
         questions.push({ question: `Is the member from Generation ${randomGeneration}?`, key: 'generation', value: randomGeneration });
 
@@ -112,6 +112,12 @@
             { key: 'trainee' },
             { key: 'generation' }
         ][currentQuestionIndex];
+
+        if (question.key === 'generation' && response === 'no') {
+            // If answer is "No" for generation, repeat the generation question
+            askQuestion();
+            return;
+        }
 
         const value = response === 'yes' ? true : false;
         filteredMembers = filteredMembers.filter(member => {
