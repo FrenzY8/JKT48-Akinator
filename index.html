@@ -138,9 +138,16 @@
 
         if (question.key === 'trainee' && value === true) {
             askGenerationQuestion();
+            showPossibleMembers();
             return;
         }
 
+        if (question.key === 'graduated' && value === true) {
+            askInitialLetter();
+            showPossibleMembers();
+            return;
+        }
+        
         currentQuestionIndex++;
         askQuestion();
         showPossibleMembers();
