@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48 Mem</h1>
+    <h1>Guess the JKT48</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -186,7 +186,9 @@
             member.generation === currentGeneration && 
             member.name.charAt(0).toUpperCase() === letter
         );
+        let firstMember = filteredMembers[0];
         showPossibleMembers();
+        showResult(firstMember);
         } else {
         const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
         document.getElementById('question').innerText = `Does the member's name start with ${randomLetter}?`;
