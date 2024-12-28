@@ -78,7 +78,7 @@
 <body>
 
 <div id="game">
-    <h1>Guess the JKT48</h1>
+    <h1>Guess the JKT48 Mem</h1>
     <div id="question"></div>
     <div id="answers">
         <button class="answer" onclick="answer('yes')">Yes</button>
@@ -182,7 +182,10 @@
     function filterByLetter(letter) {
         if (letter) {
         // let firstMember = filteredMembers.filter(member => member.name.charAt(0).toUpperCase() === letter)[0] || "Tidak ada :(";
-        filteredMembers = filteredMembers.filter(member => member.name.charAt(0).toUpperCase() === letter)[0] || "Tidak ada :(";
+        filteredMembers = filteredMembers.filter(member => 
+            member.generation === currentGeneration && 
+            member.name.charAt(0).toUpperCase() === letter
+        );
         showPossibleMembers();
         } else {
         const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random letter (A-Z)
