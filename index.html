@@ -201,31 +201,48 @@
         showPossibleMembers();
     }
 
-    function askSecondLetter(name) {
-        const secondLetter = name.charAt(1).toUpperCase();
-        document.getElementById('question').innerText = `Does the second letter of her name is ${secondLetter}?`;
-        document.getElementById('answers').innerHTML = `
-            <button class="answer" onclick="filterBySecondLetter('${secondLetter}')">Yes</button>
-            <button class="answer" onclick="filterBySecondLetter('')">No</button>
-        `;
-    }
+    let currentMemberIndex = 1;  // Start with the second member in the filtered list
 
     function filterBySecondLetter(secondLetter) {
     if (secondLetter) {
+        // Filter the members based on the second letter
         filteredMembers = filteredMembers.filter(member => 
             member.name.charAt(1).toUpperCase() === secondLetter
         );
-        showResult(filteredMembers[0]);
-        showPossibleMembers();
+
+        // If only one member is left, show the result
+        if (filteredMembers.length === 1) {
+            showResult(filteredMembers[0]);
+            showPossibleMembers();
+        } else {
+            // If more than one member is left, continue asking for the second letter
+            askSecondLetter(filteredMembers[currentMemberIndex].name);
+        }
     } else {
+        // If no second letter chosen yet, ask for the second letter of the current member
         if (filteredMembers.length > 1) {
-            askSecondLetter(filteredMembers[1].name);  // Ask second letter from the second member in the list
+            askSecondLetter(filteredMembers[currentMemberIndex].name);
         } else {
             showResult(filteredMembers[0]);  // Show result if only one member is left
         }
     }
     }
 
+    // This function asks the second letter question for the current member
+    function askSecondLetter(memberName) {
+    const secondLetter = memberName.charAt(1).toUpperCase(); // Get the second letter
+    document.getElementById('question').innerText = `Does the second letter of the member's name is ${secondLetter}?`;
+    document.getElementById('answers').innerHTML = `
+        <button class="answer" onclick="filterBySecondLetter('${secondLetter}')">Yes</button>
+        <button class="answer" onclick="filterBySecondLetter('')">No</button>
+    `;
+
+    // Update the currentMemberIndex to loop through the members
+    currentMemberIndex++;
+    if (currentMemberIndex >= filteredMembers.length) {
+        currentMemberIndex = 0;  // Reset to the first member when we reach the end
+    }
+    }
 
     function showResult(member) {
         document.getElementById('result').style.display = 'block';
