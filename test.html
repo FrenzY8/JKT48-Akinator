@@ -181,15 +181,16 @@
 
     function filterByNum(letter) {
         if (letter) {
+            const generation = letter; // Example generation number
             filteredMembers = filteredMembers.filter(member => 
-                member.generation === letter && 
+                member.generation === generation && 
                 member.graduated === true
             );
-
             if (filteredMembers.length > 1) {
                 askSecondLetter(filteredMembers[0].name);
             } else {
                 showResult(filteredMembers[0]);
+                showPossibleMembers();
             }
             showPossibleMembers();
         } else {
