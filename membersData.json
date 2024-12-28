@@ -1,0 +1,1672 @@
+[
+    {
+        "name": "Gabriela Margareth Warouw",
+        "picture": "/assets/member/gabriella.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Allisa Astri",
+        "picture": "/assets/member/allisa_astri.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Alissa Galliamova",
+        "picture": "/assets/member/alissa_galliamova.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Ayana Shahab",
+        "picture": "/assets/member/ayana_shahab.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Beby Chaesara Anadila",
+        "picture": "/assets/member/beby_chaesara_anadila.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Cindy Gulla",
+        "picture": "/assets/member/cindy_gulla.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Cleopatra",
+        "picture": "/assets/member/cleopatra.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Delima Rizky",
+        "picture": "/assets/member/delima_rizky.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Devi Kinal Putri",
+        "picture": "/assets/member/devi_kinal_putri.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Diasta Priswarini",
+        "picture": "/assets/member/diasta_priswarini.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Fahira",
+        "picture": "/assets/member/fahira.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Frieska Anastasia Laksani",
+        "picture": "/assets/member/frieska_anastasia_laksani.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Ghaida Farisya",
+        "picture": "/assets/member/ghaida_farisya.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Intania Pratama Ilham",
+        "picture": "/assets/member/intania_pratama_ilham.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Jessica Vania",
+        "picture": "/assets/member/jessica_vania.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Jessica Veranda",
+        "picture": "/assets/member/jessica_veranda.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Melody Nurramdhani Laksani",
+        "picture": "/assets/member/melody_nurramdhani_laksani.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nabilah Ratna Ayu Azalia",
+        "picture": "/assets/member/nabilah_ratna_ayu_azalia.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Neneng Rosediana",
+        "picture": "/assets/member/neneng_rosediana.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nozawa Rena",
+        "picture": "/assets/member/nozawa_rena.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Rezky Wiranti Dhike",
+        "picture": "/assets/member/rezky_wiranti_dhike.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Rica Leyona",
+        "picture": "/assets/member/rica_leyona.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Sendy Ariani",
+        "picture": "/assets/member/sendy_ariani.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Shania Junianatha",
+        "picture": "/assets/member/shania_junianatha.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Siti Gayatri",
+        "picture": "/assets/member/siti_gayatri.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Sonia Natalia",
+        "picture": "/assets/member/sonia_natalia.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Sonya Pandarmawan",
+        "picture": "/assets/member/sonya_pandarmawan.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Stella Cornelia",
+        "picture": "/assets/member/stella_cornelia.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Haruka Nakagawa",
+        "picture": "/assets/member/haruka_nakagawa.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Aki Takajo",
+        "picture": "/assets/member/aki_takajo.jpg",
+        "generation": 1,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Alicia Chanzia",
+        "picture": "/assets/member/alicia_chanzia.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Althea Callista",
+        "picture": "/assets/member/althea_callista.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Annisa Athia",
+        "picture": "/assets/member/annisa_athia.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Cindy Yuvia",
+        "picture": "/assets/member/cindy_yuvia.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Della Delila",
+        "picture": "/assets/member/della_delila.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Dellia Erdita",
+        "picture": "/assets/member/dellia_erdita.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Dena Siti Rohyati",
+        "picture": "/assets/member/dena_siti_rohyati.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Dwi Putri Bonita",
+        "picture": "/assets/member/dwi_putri_bonita.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Fakhriyani Shafariyanti",
+        "picture": "/assets/member/fakhriyani_shafariyanti.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Intar Putri Kariina",
+        "picture": "/assets/member/intar_putri_kariina.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Jennifer Hanna",
+        "picture": "/assets/member/jennifer_hanna.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Jennifer Rachel Natasya",
+        "picture": "/assets/member/jennifer_rachel_natasya.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Lidya Maulida Djuhandar",
+        "picture": "/assets/member/lidya_maulida_djuhandar.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nadhifa Karimah",
+        "picture": "/assets/member/nadhifa_karimah.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nadila Cindi Wantari",
+        "picture": "/assets/member/nadila_cindi_wantari.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Natalia",
+        "picture": "/assets/member/natalia.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Noella Sisterina",
+        "picture": "/assets/member/noella_sisterina.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Novinta Dhini",
+        "picture": "/assets/member/novinta_dhini.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nurhalima Oktavianti",
+        "picture": "/assets/member/nurhalima_oktavianti.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Octi Sevpin",
+        "picture": "/assets/member/octi_sevpin.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Olivia Robberecht",
+        "picture": "/assets/member/olivia_robberecht.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Priscillia Sari Dewi",
+        "picture": "/assets/member/priscillia_sari_dewi.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Ratu Vienny Fitrilya",
+        "picture": "/assets/member/ratu_vienny_fitrilya.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Riskha Fairunissa",
+        "picture": "/assets/member/riskha_fairunissa.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Rona Anggreani",
+        "picture": "/assets/member/rona_anggreani.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Saktia Oktapyani",
+        "picture": "/assets/member/saktia_oktapyani.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Shinta Naomi",
+        "picture": "/assets/member/shinta_naomi.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Sinka Juliani",
+        "picture": "/assets/member/sinka_juliani.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Thalia",
+        "picture": "/assets/member/thalia.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Thalia Ivanka Elizabeth",
+        "picture": "/assets/member/thalia_ivanka_elizabeth.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Viviyona Apriani",
+        "picture": "/assets/member/viviyona_apriani.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Chikano Rina",
+        "picture": "/assets/member/chikano_rina.jpg",
+        "generation": 2,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Feni Fitriyanti",
+        "picture": "/assets/member/feni_fitriyanti.jpg",
+        "generation": 3,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Fransisca Saraswati Puspa Dewi",
+        "picture": "/assets/member/fransisca_saraswati_puspa_dewi.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Shani Indira Natio",
+        "picture": "/assets/member/shani_indira_natio.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Shania Gracia",
+        "picture": "/assets/member/shania_gracia.jpg",
+        "generation": 3,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Alycia Ferryana",
+        "picture": "/assets/member/alycia_ferryana.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Amanda Dwi Arista",
+        "picture": "/assets/member/amanda_dwi_arista.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Andela Yuwono",
+        "picture": "/assets/member/andela_yuwono.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Anggie Putri Kurniasari",
+        "picture": "/assets/member/anggie_putri_kurniasari.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Aninditha Rahma Cahyadi",
+        "picture": "/assets/member/aninditha_rahma_cahyadi.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Ayu Safira Oktaviani",
+        "picture": "/assets/member/ayu_safira_oktaviani.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Chikita Ravenska Mamesah",
+        "picture": "/assets/member/chikita_ravenska_mamesah.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Elaine Hartanto",
+        "picture": "/assets/member/elaine_hartanto.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Farina Yogi Devani",
+        "picture": "/assets/member/farina_yogi_devani.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Indah Permata Sari",
+        "picture": "/assets/member/indah_permata_sari.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Kezia Putri Andinta",
+        "picture": "/assets/member/kezia_putri_andinta.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Maria Genoveva Natalia Desy Purnamasari Gunawan",
+        "picture": "/assets/member/maria_genoveva_natalia_desy_purnamasari_gunawan.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Martha Graciela",
+        "picture": "/assets/member/martha_graciela.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Michelle Christo Kusnadi",
+        "picture": "/assets/member/michelle_christo_kusnadi.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Milenia Christien Glory Goenawan",
+        "picture": "/assets/member/milenia_christien_glory_goenawan.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nadhifa Salsabila",
+        "picture": "/assets/member/nadhifa_salsabila.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Ni Made Ayu Vania Aurellia",
+        "picture": "/assets/member/ni_made_ayu_vania_aurellia.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nina Hamidah",
+        "picture": "/assets/member/nina_hamidah.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Pipit Ananda",
+        "picture": "/assets/member/pipit_ananda.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Putri Farin Kartika",
+        "picture": "/assets/member/putri_farin_kartika.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Rizka Khalila",
+        "picture": "/assets/member/rizka_khalila.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Shaffa Nabila",
+        "picture": "/assets/member/shaffa_nabila.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Sofia Meifaliani",
+        "picture": "/assets/member/sofia_meifaliani.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Stephanie Pricilla Indarto Putri",
+        "picture": "/assets/member/stephanie_pricilla_indarto_putri.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Syahfira Angela Nurhaliza",
+        "picture": "/assets/member/syahfira_angela_nurhaliza.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Triarona Kusuma",
+        "picture": "/assets/member/triarona_kusuma.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Yansen Indiani",
+        "picture": "/assets/member/yansen_indiani.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Zebi Magnolia Fawwaz",
+        "picture": "/assets/member/zebi_magnolia_fawwaz.jpg",
+        "generation": 3,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Jinan Safa Safira",
+        "picture": "/assets/member/jinan_safa_safira.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Tan Zhi Hui Celine",
+        "picture": "/assets/member/tan_zhi_hui_celine.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Cindy Hapsari Maharani Pujiantoro Putri",
+        "picture": "/assets/member/cindy_hapsari.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Adriani Elisabeth",
+        "picture": "/assets/member/adriani_elisabeth.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Christy Chriselle",
+        "picture": "/assets/member/christi.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Fidly Immanda Azzahra",
+        "picture": "/assets/member/fidly_immanda.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Jessica Berliana Ekawardani",
+        "picture": "/assets/member/jessica_berliana.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Made Devi Ranita Ningtara",
+        "picture": "/assets/member/made_devi.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Mega Suryani",
+        "picture": "/assets/member/mega_suryani.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Melati Putri Rahel Sesilia",
+        "picture": "/assets/member/melati_putri.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Sri Lintang",
+        "picture": "/assets/member/sri_lintang.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Zahra Yuriva Dermawan",
+        "picture": "/assets/member/zahra_yuriva.jpg",
+        "generation": 4,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Adhisty Zara",
+        "picture": "/assets/member/adhisty_zara.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Anggita Destiana Dewi",
+        "picture": "/assets/member/anggita_destiana.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Citra Ayu Pranajaya Wibrado",
+        "picture": "/assets/member/citra_ayu.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Chintya Hanindhitakirana Wirawan",
+        "picture": "/assets/member/chintya_hanindhitakirana.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Diani Amalia Ramadhani",
+        "picture": "/assets/member/diani_amalia.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Elizabeth Gloria Setiawan",
+        "picture": "/assets/member/elizabeth_gloria.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Eve Antoinette Ichwan",
+        "picture": "/assets/member/eve_antoinette.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Gabryela Marcelina",
+        "picture": "/assets/member/gabryela_marcelina.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Hasyakyla Utami Kusumawardhani",
+        "picture": "/assets/member/hasyakyla_utami.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Helma Sonya",
+        "picture": "/assets/member/helma_sonya.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nurhayati",
+        "picture": "/assets/member/nurhayati.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Puti Nadhira Azalia",
+        "picture": "/assets/member/puti_nadhira.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Regina Angelina",
+        "picture": "/assets/member/regina_angelina.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Rissanda Putri Tuarissa",
+        "picture": "/assets/member/rissanda_putri.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Ruth Damayanti Sitanggang",
+        "picture": "/assets/member/ruth_damayanti.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Sania Julia Montolalu",
+        "picture": "/assets/member/sania_julia.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Violeta Burhan",
+        "picture": "/assets/member/violeta_burhan.jpg",
+        "generation": 5,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Gita Sekar Andarini",
+        "picture": "/assets/member/gita_sekar_andarini.jpg",
+        "generation": 6,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Amanda Priscella",
+        "picture": "/assets/member/amanda_priscella.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Anastasya Narwastu Tety Handuran",
+        "picture": "/assets/member/anastasya_narwastu.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Ariella Calista Ichwan",
+        "picture": "/assets/member/ariella_calista.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Denise Caroline",
+        "picture": "/assets/member/denise_caroline.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Erika Ebisawa Kuswan",
+        "picture": "/assets/member/erika_ebisawa.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Erika Sintia",
+        "picture": "/assets/member/erika_sintia.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Graciella Ruth Wiranto",
+        "picture": "/assets/member/graciella_ruth.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Jihan Miftahul Jannah",
+        "picture": "/assets/member/jihan_miftahul.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Kandiya Rafa Maulidita",
+        "picture": "/assets/member/kandiya_rafa.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Putri Cahyaning Anggraini",
+        "picture": "/assets/member/putri_cahyaning.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Rinanda Syahputri",
+        "picture": "/assets/member/rinanda_syahputri.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Riska Amelia Putri",
+        "picture": "/assets/member/riska_amelia.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Shalza Grasita",
+        "picture": "/assets/member/shalza_grasita.jpg",
+        "generation": 6,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Angelina Christy",
+        "picture": "/assets/member/angelina_christy.jpg",
+        "generation": 7,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Azizi Asadel",
+        "picture": "/assets/member/azizi_asadel.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Dhea Angelia",
+        "picture": "/assets/member/dhea_angelia.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Febriola Sinambela",
+        "picture": "/assets/member/febriola_sinambela.jpg",
+        "generation": 7,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Freya Jayawardana",
+        "picture": "/assets/member/freya_jayawardana.jpg",
+        "generation": 7,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Helisma Putri",
+        "picture": "/assets/member/helisma_putri.jpg",
+        "generation": 7,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Jessica Chandra",
+        "picture": "/assets/member/jessica_chandra.jpg",
+        "generation": 7,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Jesslyn Callista",
+        "picture": "/assets/member/jesslyn_callista.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Mutiara Azzahra",
+        "picture": "/assets/member/mutiara_azzahra.jpg",
+        "generation": 7,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Yessica Tamara",
+        "picture": "/assets/member/yessica_tamara.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Aiko Harumi",
+        "picture": "/assets/member/aiko_harumi.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Aurel Mayori",
+        "picture": "/assets/member/aurel_mayori.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Calista Lea",
+        "picture": "/assets/member/calista_lea.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Febi Komaril",
+        "picture": "/assets/member/febi_komaril.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Febrina Diponegoro",
+        "picture": "/assets/member/febrina_diponegoro.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Gabriel Angelina",
+        "picture": "/assets/member/gabriel_angelina.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Kanya Caya",
+        "picture": "/assets/member/kanya_caya.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nabila Fitriana",
+        "picture": "/assets/member/nabila_fitriana.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Rifa Fatmasari",
+        "picture": "/assets/member/rifa_fatmasari.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Viona Fadrin",
+        "picture": "/assets/member/viona_fadrin.jpg",
+        "generation": 7,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Cornelia Vanisa",
+        "picture": "/assets/member/cornelia_vanisa.jpg",
+        "generation": 8,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Fiony Alveria Tantri",
+        "picture": "/assets/member/fiony_alveria.jpg",
+        "generation": 8,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Flora Shafiq",
+        "picture": "/assets/member/flora_shafiq.jpg",
+        "generation": 8,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Lulu Salsabila",
+        "picture": "/assets/member/lulu_salsabila.jpg",
+        "generation": 8,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Reva Fidela",
+        "picture": "/assets/member/reva_fidela.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Amanina Afiqah",
+        "picture": "/assets/member/amanina_afiqah.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Amirah Fatin",
+        "picture": "/assets/member/amirah_fatin.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Cindy Nugroho",
+        "picture": "/assets/member/cindy_nugroho.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Devytha Maharani",
+        "picture": "/assets/member/devytha_maharani.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Eriena Kartika",
+        "picture": "/assets/member/eriena_kartika.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Gabriella Stevany",
+        "picture": "/assets/member/gabriella_stevany.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Keisya Ramadhani",
+        "picture": "/assets/member/keisya_ramadhani.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nyimas Ratu Rafa",
+        "picture": "/assets/member/nyimas_ratu_rafa.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Pamela Krysanthe",
+        "picture": "/assets/member/pamela_krysanthe.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Reva Adriana",
+        "picture": "/assets/member/reva_adriana.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Salma Annisa",
+        "picture": "/assets/member/salma_annisa.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Umega Maulana",
+        "picture": "/assets/member/umega_maulana.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Zahra Nur",
+        "picture": "/assets/member/zahra_nur.jpg",
+        "generation": 8,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Adzana Shaliha",
+        "picture": "/assets/member/adzana_shaliha.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Indah Cahya",
+        "picture": "/assets/member/indah_cahya.jpg",
+        "generation": 9,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Kathrina Irene",
+        "picture": "/assets/member/kathrina_irene.jpg",
+        "generation": 9,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Marsha Lenathea",
+        "picture": "/assets/member/marsha_lenathea.jpg",
+        "generation": 9,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Caithlyn Gwyneth",
+        "picture": "/assets/member/caithlyn_gwyneth.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Chalista Ellysia",
+        "picture": "/assets/member/chalista_ellysia.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Christabel Jocelyn",
+        "picture": "/assets/member/christabel_jocelyn.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Iris Vevina Prasetio",
+        "picture": "/assets/member/iris_vevina_prasetio.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Nabila Gusmarlia",
+        "picture": "/assets/member/nabila_gusmarlia.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Olivia Payten",
+        "picture": "/assets/member/olivia_payten.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Putri Elzahra",
+        "picture": "/assets/member/putri_elzahra.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Shinta Devi",
+        "picture": "/assets/member/shinta_devi.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Tiara Sasi",
+        "picture": "/assets/member/tiara_sasi.jpg",
+        "generation": 9,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Alia Giselle",
+        "picture": "/assets/member/alia_giselle.jpg",
+        "generation": 10,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Amanda Sukma",
+        "picture": "/assets/member/amanda_sukma.jpg",
+        "generation": 10,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Aurellia",
+        "picture": "/assets/member/aurellia.jpg",
+        "generation": 10,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Callista Alifia",
+        "picture": "/assets/member/callista_alifia.jpg",
+        "generation": 10,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Gabriela Abigail",
+        "picture": "/assets/member/gabriela_abigail.jpg",
+        "generation": 10,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Indira Seruni",
+        "picture": "/assets/member/indira_seruni.jpg",
+        "generation": 10,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Jesslyn Elly",
+        "picture": "/assets/member/jesslyn_elly.jpg",
+        "generation": 10,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Raisha Syifa",
+        "picture": "/assets/member/raisha_syifa.jpg",
+        "generation": 10,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Abieza Syabira",
+        "picture": "/assets/member/abieza_syabira.jpg",
+        "generation": 10,
+        "graduated": true
+    },
+    {
+        "name": "Danessa Valerie Hertanto",
+        "picture": "/assets/member/danessa_valerie.jpg",
+        "generation": 10,
+        "graduated": true
+    },
+    {
+        "name": "Naura Safinatunnajah",
+        "picture": "/assets/member/naura_safinatunnajah.jpg",
+        "generation": 10,
+        "graduated": true
+    },
+    {
+        "name": "Alya Amanda",
+        "picture": "/assets/member/alya_amanda.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Anindya Ramadhani",
+        "picture": "/assets/member/anindya_ramadhani.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Aulia Asyira",
+        "picture": "/assets/member/aulia_asyira.jpg",
+        "generation": 11,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Cathleen Nixie",
+        "picture": "/assets/member/cathleen_nixie.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Celline Thefani",
+        "picture": "/assets/member/celline_thefani.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Chelsea Davina",
+        "picture": "/assets/member/chelsea_davina.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Cynthia Yaputera",
+        "picture": "/assets/member/cynthia_yaputera.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Dena Natalia",
+        "picture": "/assets/member/dena_natalia.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Desy Natalia",
+        "picture": "/assets/member/desy_natalia.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Gendis Mayrannisa",
+        "picture": "/assets/member/gendis_mayrannisa.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Grace Octaviani",
+        "picture": "/assets/member/grace_octaviani.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Greesella Adhalia",
+        "picture": "/assets/member/greesella_adhalia.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Jeane Victoria",
+        "picture": "/assets/member/jeane_victoria.jpg",
+        "generation": 11,
+        "graduated": true,
+        "trainee": false
+    },
+    {
+        "name": "Michelle Alexandra",
+        "picture": "/assets/member/michelle_alexandra.jpg",
+        "generation": 11,
+        "graduated": false,
+        "trainee": false
+    },
+    {
+        "name": "Abigail Rachel",
+        "picture": "/assets/member/abigail_rachel.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Adeline Wijaya",
+        "picture": "/assets/member/adeline_wijaya.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Aisa Maharani",
+        "picture": "/assets/member/aisa_maharani.jpg",
+        "generation": 12,
+        "graduated": true,
+        "trainee": true
+    },
+    {
+        "name": "Aurhel Alana",
+        "picture": "/assets/member/aurhel_alana.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Catherina Vallencia",
+        "picture": "/assets/member/catherina_vallencia.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Fritzy Rosmerian",
+        "picture": "/assets/member/fritzy_rosmerian.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Hillary Abigail",
+        "picture": "/assets/member/hillary_abigail.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Jazzlyn Trisha",
+        "picture": "/assets/member/jazzlyn_trisha.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Letycia Moreen",
+        "picture": "/assets/member/letycia_moreen.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Michelle Levia",
+        "picture": "/assets/member/michelle_levia.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Nayla Suji",
+        "picture": "/assets/member/nayla_suji.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Nina Tutachia",
+        "picture": "/assets/member/nina_tutachia.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Oline Manuel",
+        "picture": "/assets/member/oline_manuel.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Regina Wilian",
+        "picture": "/assets/member/regina_wilian.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Ribka Budiman",
+        "picture": "/assets/member/ribka_budiman.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Shabilqis Naila",
+        "picture": "/assets/member/shabilqis_naila.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+        "name": "Victoria Kimberly",
+        "picture": "/assets/member/victoria_kimberly.jpg",
+        "generation": 12,
+        "graduated": false,
+        "trainee": true
+    },
+    {
+     "name": "Astrella Virgiananda",
+     "picture": "/assets/member/astrella_virgiananda.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Aulia Riza",
+     "picture": "/assets/member/aulia_riza.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Bong Aprilli",
+     "picture": "/assets/member/bong_aprilli.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Hagia Sopia",
+     "picture": "/assets/member/hagia_sopia.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Humaira Ramadhani",
+     "picture": "/assets/member/humaira_ramadhani.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Jacqueline Immanuela",
+     "picture": "/assets/member/jacqueline_immanuela.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Jemima Evodie",
+     "picture": "/assets/member/jemima_evodie.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Mikaela Kusjanto",
+     "picture": "/assets/member/mikaela_kusjanto.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   },
+   {
+     "name": "Nur Intan",
+     "picture": "/assets/member/nur_intan.jpg",
+     "generation": 13,
+     "graduated": false,
+     "trainee": true
+   }    
+]
