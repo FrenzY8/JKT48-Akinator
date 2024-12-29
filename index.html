@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akinator JKT48</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+<div id="game">
+    <h1>Guess the JKT48</h1>
+    <div id="question"></div>
+    <div id="answers">
+        <button class="answer" onclick="answer('yes')">Ya</button>
+        <button class="answer" onclick="answer('no')">Tidak</button>
+    </div>
+    <div id="result" style="display:none">
+        <h2>We think the member is:</h2>
+        <img id="result-img" src="" alt="Member Image">
+        <p id="result-name"></p>
+        <p id="result-info"></p>
+    </div>
+    <div id="possible-members" class="possible-members"></div>
+</div>
+<script src="./assets/script/script.js"></script>
+</body>
+</html>
