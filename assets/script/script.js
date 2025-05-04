@@ -394,21 +394,22 @@ function showPossibleMembers() {
   // const img = document.createElement('img');
   // img.src = "https://jkt48-member.vercel.app" + member.picture;
   const name = document.createElement("p");
-
   name.innerText = "Progress: " + calculatePercentage(filteredMembers) + "%";
   // memberDiv.appendChild(img);
   memberDiv.appendChild(name);
   possibleMembersDiv.appendChild(memberDiv);
+
+  /* DEBUG PURPOSE */
   /*filteredMembers.forEach(member => {
-            const memberDiv = document.createElement('div');
-            const img = document.createElement('img');
-            img.src = "https://jkt48-member.vercel.app" + member.picture;
-            const name = document.createElement('p');
-            name.innerText = member.name;
-            memberDiv.appendChild(img);
-            memberDiv.appendChild(name);
-            possibleMembersDiv.appendChild(memberDiv);
-    });*/
+    const memberDiv = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = "https://jkt48-member.vercel.app" + member.picture;
+    const name = document.createElement('p');
+    name.innerText = member.name;
+    memberDiv.appendChild(img);
+    memberDiv.appendChild(name);
+    possibleMembersDiv.appendChild(memberDiv);
+  });*/
 }
 
 loadData();
