@@ -141,7 +141,7 @@ function randomQuestions() {
 
 function loadData() {
   fetch(
-    "https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/members.json"
+    "https://raw.githubusercontent.com/FrenzY8/JKT48-Member/refs/heads/main/AllMember.json"
   )
     .then((response) => response.json())
     .then((data) => {
